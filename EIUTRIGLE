@@ -1,0 +1,61 @@
+//question EIUTRIGLE - Number of triangles
+
+Given an unsorted array of positive integers. Find the number of triangles that can be formed with three different array elements as three sides of triangles. For a triangle to be possible from 3 values, the sum of any two values (or sides) must be greater than the third value (or third side).
+For example, if the input array is {4, 6, 3, 7}, the output should be 3. There are three triangles possible {3, 4, 6}, {4, 6, 7} and {3, 6, 7}. Note that {3, 4, 7} is not a possible triangle.
+
+Input
+ 
+
+The first line is an integer NThe next line contains N integers corresponding to the length of one side of a triangle.
+The first line is an integer N
+
+The next line contains N integers corresponding to the length of one side of a triangle.
+
+ 
+
+Output
+The number of possible triangles
+import java.util.*;
+//
+
+public class EIUTRIGLE {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        long count = 0;
+        int n = sc.nextInt();
+        int tria[] = new int[n];
+        for (int i = 0; i < tria.length; i++) {
+            tria[i] = sc.nextInt();
+        }
+        sortA(tria);
+        for (int i = 0; i < tria.length; i++) {
+            System.out.println(tria[i]);
+        }
+        for (int i = 0; i < tria.length - 2; i++) {
+            for (int j = i+1; j < tria.length - 1; j++) {
+                for (int k = j+1; k < tria.length; k++) {
+                    if (tria[i] + tria[j] > tria[k]) {
+                        count++;
+                    } else {
+                        break;
+                    }
+
+                }
+            }
+        }
+        System.out.println("Numbers of Triangles: "+count);
+    }
+
+    public static void sortA(int a[]) {
+        for (int i = 0; i < a.length - 1; i++) {
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[i] > a[j]) {
+                    int t = a[j];
+                    a[j] = a[i];
+                    a[i] = t;
+                }
+            }
+        }
+    }
+}
