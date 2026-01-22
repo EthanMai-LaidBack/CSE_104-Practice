@@ -1,0 +1,58 @@
+// đây là bài đếm ngón tay Phuc's niece spread her hands and began counting from the thumb of her left hand: 1, 2, 3, ... Everything went as normal as the number 10 - on the thumb of her right hand - she turned around and count her index finger with 11 and likewise, count to the thumb of her left hand and then turn around. You see the picture to understand more:
+
+ 
+
+After a while, the girl looked up and asked Mr. Phuc: "Which finger will number 99 be?". Phuc quickly answered, "The index finger of the right hand." She seemed unhappy because of his quickness, she asked, "That number is too small, so which number is 200?". Phuc told her that after the meal, he would answer because he knew she would keep asking until he was tired. During that time, he wanted to write a program to find the answer.
+
+Input
+A positive integer n (0 <n <231) is the number she will ask.
+
+Output
+The finger and hand follow the pattern: “Ngon Y cua ban tay Z”.
+
+With Y ∈ {“cai”, “tro”, “giua”, “ap ut”, “ut”} and Z ∈ {“trai”,”phai”}.
+
+Sample
+ 
+
+Input
+99
+
+Output
+Ngon tro cua ban tay phai 
+//
+
+
+
+import java.util.Scanner;
+
+public class EIUFING {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        long n = sc.nextLong();
+        long rem = n % 18;
+        if (rem == 1) {
+            System.out.println("Ngon cai cua ban tay trai");
+        } else if (rem == 0 || rem == 2) {
+            System.out.println("Ngon tro cua ban tay trai");
+        } else if (rem == 3 || rem == 17) {
+            System.out.println("Ngon giua cua ban tay trai");
+        } else if (rem == 4 || rem == 16) {
+            System.out.println("Ngon ap ut cua ban tay trai");
+        } else if (rem == 5 || rem == 15) {
+            System.out.println("Ngon ut cua ban tay trai");
+        } else if (rem == 6 || rem == 14) {
+            System.out.println("Ngon ut cua ban tay phai");
+        } else if (rem == 7 || rem == 13) {
+            System.out.println("Ngon ap ut cua ban tay phai");
+        } else if (rem == 8 || rem == 12) {
+            System.out.println("Ngon giua cua ban tay phai");
+        } else if (rem == 9 || rem == 11) {
+            System.out.println("Ngon tro cua ban tay phai");
+        } else if (rem == 10) {
+            System.out.println("Ngon cai cua ban tay phai");
+        }
+    }
+
+}
