@@ -1,0 +1,68 @@
+// đây là một bài tập tính lũy tiến, rất quan trọng, các bạn nên thực hành các bài dạng lũy tiến này nhiều lần//
+
+//ABC store applies a promotion on the opening day. Customers are discounted based on different levels. Specifically:
+
+•    Amount of money between 1 thousand VND to 2 million VND: no discount
+
+•    Amount of money from 2 million VND to 10 million VND : 3% discount
+
+•    Amount of money from 10 million VND to 50 million VND : 5% discount
+
+•    Amount of money  from 50 million VND to 100 million VND: 7% discount
+
+•    Amount of money  from 100 million VND to 200 million VND: 10% discount
+
+•    Amount of money  from 200 million VND to 500 million VND: 12% discount
+
+•    Amount of money over 500 milion VND: 15% discount
+
+* Discount rate is applied on the amount of each level, not on the whole bill. The payment amount is rounded to the nearest whole number
+
+The software of the store has calculated the total value of the items (N, a multiple of 1000) that the customer purchases. Write a program that helps the store calculate the amount the customer has to pay.
+
+Input
+A single line consists of 1 positive integer N (1,000 ≤ N ≤ 5 * 10 ^ 9).
+
+Output
+A single line is the amount that the customer must pay.
+
+Example
+Input:
+20000000
+
+Output:
+19260000
+Input:
+55555000
+
+Output:
+52926150
+//
+
+import java.util.*;
+
+public class EIDISCOU {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        long n = sc.nextLong();
+        long mil = 1000000;
+        Long levels[] = new Long[] { 1000l, 2 * mil, 10 * mil, 50 * mil, 100 * mil, 200 * mil, 500 * mil,
+                Long.MAX_VALUE };
+        Double rates[] = new Double[] { 0d, 0.03, 0.05, 0.07, 0.1, 0.12, 0.15 };
+        double pay = 0l;
+        for (int i = 1; i < levels.length; i++) {
+            if (n > levels[i - 1]) {
+                long portion = Math.min(n, levels[i]) - levels[i - 1];
+                pay += portion * rates[i - 1];
+            } else {
+                break;
+            }
+        }
+        System.out.println(Math.round(n - pay));
+    }
+}
+
+
+
+
