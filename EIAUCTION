@@ -1,0 +1,80 @@
+// Đề Bài EIAUCTION 
+Black Friday is the Friday following Thanksgiving Day in the United States (the fourth Thursday of November). Since the early 2000s, it has been regarded as the beginning of the Christmas shopping season in the US, and most major retailers open very early and offer promotional sales.
+
+This year, in an attempt to prevent overcrowding, the management has decided to limit the number of people entering the store. The rule is to select the participant with the highest unique outcome
+
+For example, if there are three players and the outcomes are 6, 6 and 5, then the third player wins. The first and second player lose even though their outcomes are higher, since they both have the same outcome. If instead the third player also rolls 6, then nobody wins.
+
+Input
+The first line of the input contains one integer n, 1≤n≤100, the group size. The second line contains n integers a1,a2,…,an (1≤ai≤6 for all 1≤i≤n): the outcome of each participant’s die roll.
+
+Output
+Output the index of the participant that has the highest unique outcome, or “none” (without the quotes) if nobody has a unique outcome.
+
+Example
+Input:
+8
+1 1 1 5 3 4 6 6
+
+Output:
+4
+
+Input:
+3
+4 4 4
+
+Output:
+none
+//
+
+
+
+
+import java.util.*;
+
+public class EIAUCTION {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int n = sc.nextInt();
+        int count_wrong = 0;
+        int index=-1;
+        int lucky[] = new int[n];
+        // nhập số unique number
+        for (int i = 0; i < lucky.length; i++) {
+            lucky[i] = sc.nextInt();
+        }
+        int unique = 0;
+        int max_uni = 0;
+        for (int i = 0; i < lucky.length; i++) {
+            if (checkunique(lucky, lucky[i])) {
+                unique = lucky[i];
+                if (unique > max_uni) {
+                    max_uni = unique;
+                    index=i+1;
+                }
+            } else {
+                count_wrong++;
+            }
+        }
+        if (count_wrong == lucky.length) {
+            System.out.println("none");
+        } else {
+            System.out.println(index);
+        }
+    }
+
+    public static boolean checkunique(int n[], int a) {
+        int count = 0;
+        for (int i = 0; i < n.length; i++) {
+            if (n[i] == a) {
+                count++;
+            }
+            if (count >= 2) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+}
