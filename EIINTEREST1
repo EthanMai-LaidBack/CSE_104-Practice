@@ -1,0 +1,57 @@
+
+// EIINTEREST1 - Buy computers
+
+ 
+
+Piccolo is a gaming enthusiast so Piccolo decided to save some money so that by the end of the year he could buy a high-spec computer that could play all of his favorite games.
+
+Every month, Piccolo deposits savings in the bank and the interest rate on the bank each month is fixed.
+
+Piccolo is good at calculating but because it is near the end of the year, Piccolo wants to know how much money he will have to buy the machine.
+
+ 
+
+Input
+The first line is a non-negative real number X, which is the bank rate per month that Piccolo sends.
+
+The next line is a sequence of 12 non-negative integers (≤ 109) separated by a space, which corresponds to Piccolo's 12-month deposit.
+
+Output
+A single line is the amount of money that Piccolo receives at the end of the year.
+
+Example
+Input
+
+Output
+
+0.054
+
+2000000 2500000 4500000 3500000 3000000 3200000 2400000 4000000 3100000 1800000 2700000 3900000
+
+52181154
+
+//
+
+// lưu ý: bài này sử dụng công thức tính lãi xuất kép //
+
+link bài tập: https://www.spoj.com/EIUPROGR/problems/EIINTEREST1/ //
+import java.util.*;
+
+public class EIINTEREST1 {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] agrs) {
+        double interest = sc.nextDouble();
+        long deposit[] = new long[12];
+        for (int i = 0; i < deposit.length; i++) {
+            deposit[i] = sc.nextLong();
+        }
+        double moneyReceived = 0;
+
+        for (int i = 0; i < deposit.length; i++) {
+            moneyReceived = (moneyReceived + deposit[i]) * (1 + interest);
+        }
+
+        System.out.println(Math.round(moneyReceived));
+    }
+}
