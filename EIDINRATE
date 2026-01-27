@@ -1,0 +1,24 @@
+//link bài SPOJ: https://www.spoj.com/EIUPROGR/problems/EIDINRATE/  //
+
+
+import java.util.*;
+
+public class EIDINRATE {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        long testCases = sc.nextLong();
+        // Áp dụng: Cấu trúc vòng lặp với khoảng cách (spacing) quanh toán tử
+        while (testCases > 0) {
+            double initialAmount = sc.nextDouble();
+            double interestRatePercent = sc.nextDouble();
+            double targetAmount = sc.nextDouble();
+            double year = 0;
+
+            year = (Math.log(targetAmount / initialAmount)) / (Math.log(1 + (interestRatePercent / 100)));
+            testCases--;
+
+            System.out.println((int) Math.ceil(year));
+        }
+    }
+}
