@@ -1,0 +1,21 @@
+import java.util.*;
+
+public class EIVCHR1 {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] agrs) {
+        // bài toán tính discount cho sản phẩm đang mua, giảm 30% (tối đa 50k chho sản phẩm )
+        long moneyGiven = sc.nextLong();
+        //tính tiền giảm
+        double moneyDiscount = moneyGiven * 0.3;
+        long total = 0;
+        // xử lý nếu tiền discount vượt quá 50k 
+        if (moneyDiscount > 50000) {
+            total = moneyGiven - 50000;
+        } else {
+            total = Math.round(moneyGiven - (moneyDiscount));
+        }
+        System.out.println(total);
+    }
+}
+
