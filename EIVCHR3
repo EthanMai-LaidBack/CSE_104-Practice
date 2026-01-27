@@ -1,0 +1,66 @@
+//EIVCHR3 - Voucher 3
+
+On Singles day, Hoa has M voucher which gives 30% discount (maximum 50 thousands VND) for a item. The discount will apply to one item only and doesn’t apply to whole bill . Hoa willing to buy N  items at the store. How much does she need to pay?
+
+Input
+
+Two integer N and M (1 ≤ N, M ≤105, ) which is the number of items Hoa wants to buy and number of vouchers she have.
+
+The second line contains N integers which are prices of N items, correspondingly. The prices is not exceed 109.
+
+Output
+
+The amount of money Hoa need to spend on items.
+
+Sample
+
+Input
+
+Output
+
+5 2
+
+100000 5000 2000 100000 200000
+
+327000
+
+//
+
+//tip cho bài này, bạn nên dùng đúng định lượng cho biến (int,long, double,..etc) vì bài này dễ bị time out nếu chọn sai đơn vị//
+// link bài: https://www.spoj.com/EIUPROGR/problems/EIVCHR3/  //
+import java.util.*;
+
+public class EIVCHR3 {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int requirement[] = new int[2];
+        double totalDis = 0;
+
+        for (int i = 0; i < requirement.length; i++) {
+            requirement[i] = sc.nextInt();
+        }
+        long price[] = new long[requirement[0]];
+        for (int i = 0; i < price.length; i++) {
+            price[i] = sc.nextLong();
+            totalDis += price[i];
+        }
+        int times = 0;
+        Arrays.sort(price);
+        double discountPrice = 0;
+        int n = 1;
+
+        while (times < Math.min(requirement[1], requirement[0])) {
+            discountPrice = price[price.length - n] * 0.3;
+            if (discountPrice > 50000) {
+                totalDis -= 50000;
+            } else {
+                totalDis -= discountPrice;
+            }
+            n++;
+            times++;
+        }
+
+        System.out.println(Math.round(totalDis));
+    }
+}
