@@ -1,0 +1,56 @@
+//EIVCHR2 - Voucher 2
+
+On Singles day, Hoa has a voucher which gives 30% discount (maximum 50 thousands VND) for a item. The discount will apply to one item only and doesn’t apply to whole bill . Hoa willing to buy N  items at the store. How much does she need to pay?
+
+Input
+
+A single integer N (1 ≤ N ≤105) which is the number of items Hoa wants to buy.
+
+The second line contains N integers which are prices of N items, correspondingly. The prices is not exceed 109.
+
+Output
+
+The amount of money Hoa need to spend on items.
+
+Sample
+
+Input
+
+Output
+
+5
+
+100000 5000 2000 100000 200000
+
+357000
+
+//
+
+import java.util.*;
+
+public class EIVCHR2 {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] agrs) {
+        int numberofItems = sc.nextInt();
+        double price[] = new double[numberofItems];
+        for (int i = 0; i < price.length; i++) {
+            price[i] = sc.nextInt();
+        }
+        double discountPrice = 0;
+        double totalDis = 0;
+        Arrays.sort(price);
+        for (int i = 0; i < price.length; i++) {
+            totalDis += price[i];
+        }
+        Arrays.sort(price);
+        discountPrice = price[price.length - 1] * 0.3;
+        if (discountPrice > 50000) {
+            totalDis -= 50000;
+        } else {
+            totalDis -= price[price.length - 1] * 0.3;
+        }
+
+        System.out.println(Math.round(totalDis));
+    }
+}
