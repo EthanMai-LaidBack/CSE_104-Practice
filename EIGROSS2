@@ -1,0 +1,27 @@
+// link of the exercise: https://www.spoj.com/EIUPROGR/problems/EIGROSS2/ // 
+
+import java.util.Scanner;
+
+public class EIGROSS2 {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] agrs) {
+        long net = sc.nextLong();
+        long taxable_income = net - 11000*1000;
+        if (taxable_income <= 0) {
+            System.out.println(net);
+            return;
+        }
+        long thousand = 1000;
+        double rates[] = new double[] { 0.05, 0.1, 0.15, 0.2, 0.25, 0.30, 0.35 };
+        Long net_levels[] = new Long[] {0l, 4750 * thousand, 9250 * thousand, 16050 * thousand, 27250 * thousand,
+                42250 * thousand, 61850 * thousand, Long.MAX_VALUE };
+        double result = 0;
+        for (int i = 0; i < rates.length; i++) {
+            if (taxable_income > net_levels[i]) {
+                result += Math.min(net_levels[i+1] - net_levels[i], taxable_income - net_levels[i]) / (1 - rates[i]);
+            }
+        }
+        System.out.println(Math.round(result + 11000 * thousand));
+    }
+}
