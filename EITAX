@@ -1,0 +1,28 @@
+// link of the exercise: https://www.spoj.com/EIUPROGR/problems/EITAX/ //
+
+import java.util.*;
+
+public class EITAX {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        long n = sc.nextLong();
+        long sal_count = n - 9_000_000;
+        long mil = 1_000_000;
+        double pay = 0;
+        if (sal_count <= 0) {
+            System.out.println(0);
+        } else {
+            long levels[] = new long[] { 0l, 5 * mil, 10 * mil, 18 * mil, 32 * mil, 52 * mil, 80 * mil,
+                    Long.MAX_VALUE };
+            double rates[] = new double[] { 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 };
+            for (int i = 1; i < levels.length; i++) {
+                if (sal_count >=  levels[i-1]) {
+                    double portion = Math.min(sal_count, levels[i]) - levels[i - 1];
+                    pay += portion * rates[i - 1];
+                }
+            }
+            System.out.println((long)(pay));
+        }
+    }
+}
