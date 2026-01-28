@@ -1,0 +1,57 @@
+// link of the exercise: https://www.spoj.com/EIUPROGR/problems/EISALARY2/ //
+import java.util.*;
+
+public class EISALARY2_Alternative {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] agrs) {
+        double avg_ovr = 0;
+        double over_hour = 0;
+        double over_pay = 0;
+        double avg = 0;
+        double office_hour = 0;
+        double office_pay = 0;
+
+        int people = sc.nextInt();
+        while (people > 0) {
+            double office_hour_pre = 0;
+            double over_hour_pre = 0;
+            double result = 0;
+            double[] hour = new double[6];
+            for (int i = 0; i < hour.length; i++) {
+                hour[i] = sc.nextDouble();
+            }
+            for (int i = 0; i < hour.length - 1; i++) {
+                office_hour_pre += Math.min(8, hour[i]);
+            }
+            office_hour += office_hour_pre;
+            office_pay += office_hour_pre * hour[5];
+            for (int i = 0; i < hour.length - 1; i++) {
+                if (hour[i] > 8) {
+                    over_hour_pre += hour[i] - 8;
+                }
+            }
+            over_hour += over_hour_pre;
+            over_pay += over_hour_pre * (hour[5] * 1.5);
+            result = (Math.round(total_sal(hour) * 100) / 100d);
+            System.out.println(result);
+            people--;
+        }
+        avg = office_pay / office_hour;
+        avg_ovr = over_pay / over_hour;
+        System.out.println(Math.round(avg * 100) / 100d);
+        System.out.println(Math.round(avg_ovr * 100) / 100d);
+    }
+
+    public static double total_sal(double[] hour) {
+        double total_sal = 0;
+        for (int i = 0; i < hour.length - 1; i++) {
+            if (hour[i] > 8) {
+                total_sal += (8 * hour[5]) + ((hour[i] - 8) * hour[5] * 1.5);
+            } else {
+                total_sal += hour[i] * hour[5];
+            }
+        }
+        return total_sal;
+    }
+}
