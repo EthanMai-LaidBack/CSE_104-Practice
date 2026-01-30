@@ -1,0 +1,22 @@
+//link of the exercise: EIAPP21222FQ1   //
+
+import java.util.*;
+
+public class EIAPP21222FQ1 {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        double interestRates[] = new double[] { 0.039, 0.0392, 0.0395, 0.0399, 0.0404, 0.0554, 0.0572, 0.0592, 0.0614,
+                0.0638, 0.0664, 0.0692 };
+        double receivedMoney = n;
+
+        while (m > 0) {
+            receivedMoney += (receivedMoney * (interestRates[(Math.min(m, 12))-1] / 12) * (Math.min(m, 12)));
+            m -= 12;
+        }
+
+        System.out.println(Math.round(receivedMoney));
+    }
+}
